@@ -24,11 +24,8 @@
     --tb-btn-bg: rgba(90,45,0,0.12);
     --tb-sep: rgba(90,45,0,0.18);
     --red-urgent: #c0392b;
-    --red-bg: #fdf1f0;
     --orange: #e07b39;
-    --orange-bg: #fff4ec;
     --blue: #2471a3;
-    --blue-bg: #eaf4fb;
     --burgundy: #6b1a1a;
     --gray-100: #f8f9fa;
     --gray-200: #e9ecef;
@@ -38,7 +35,6 @@
     --gray-800: #343a40;
     --white: #ffffff;
     --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
-    --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
     --radius: 10px;
     --radius-sm: 6px;
   }
@@ -59,197 +55,250 @@
     color: var(--tb-text);
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 0 20px;
-    height: 64px;
+    height: 56px;
     position: sticky;
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 10px rgba(200,140,0,0.18);
+    gap: 0;
   }
-  .topbar-left { display: flex; align-items: center; gap: 12px; }
+
+  .topbar-brand {
+    display: flex; align-items: center; gap: 10px;
+    padding-right: 18px;
+    border-right: 1.5px solid var(--tb-sep);
+    flex-shrink: 0;
+  }
   .logo-icon {
-    width: 36px; height: 36px;
-    border-radius: 8px;
+    width: 32px; height: 32px; border-radius: 7px;
     display: flex; align-items: center; justify-content: center;
-    overflow: hidden;
-    box-shadow: 0 1px 4px rgba(90,45,0,0.25);
+    overflow: hidden; box-shadow: 0 1px 4px rgba(90,45,0,0.25);
+    flex-shrink: 0;
   }
-  .app-name { display: flex; flex-direction: column; line-height: 1.2; }
-  .app-name .main { font-size: 15px; font-weight: 800; letter-spacing: 0.3px; color: var(--burgundy); }
+  .app-name { font-size: 14px; font-weight: 800; letter-spacing: 0.3px; color: var(--burgundy); white-space: nowrap; }
 
-  .topbar-date-tabs {
-    display: flex; align-items: stretch; gap: 4px;
-    position: absolute; left: 50%; transform: translateX(-50%);
-  }
-  .topbar-date-tab {
+  .topbar-datetime {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
-    padding: 5px 16px; border-radius: 8px; cursor: pointer;
-    line-height: 1.35; transition: all 0.18s;
-    border: 1.5px solid transparent; min-width: 130px;
+    padding: 0 18px;
+    border-right: 1.5px solid var(--tb-sep);
+    line-height: 1.25;
+    flex-shrink: 0;
   }
-  .topbar-date-tab:hover { background: rgba(255,255,255,0.3); border-color: rgba(90,45,0,0.2); }
-  .topbar-date-tab.active { background: var(--tb-active-bg); border-color: var(--tb-border); box-shadow: 0 1px 6px rgba(200,140,0,0.22); }
-  .topbar-date-tab .tab-label { font-size: 10px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; color: var(--tb-lunar); margin-bottom: 1px; }
-  .topbar-date-tab .tab-duong { font-size: 12.5px; font-weight: 700; color: var(--tb-text); white-space: nowrap; }
-  .topbar-date-tab .tab-am { font-size: 10px; color: var(--tb-lunar); font-weight: 500; white-space: nowrap; }
-  .topbar-date-sep { width: 1px; background: var(--tb-sep); align-self: stretch; margin: 8px 0; }
+  .topbar-datetime .dt-duong { font-size: 12px; font-weight: 700; color: var(--tb-text); white-space: nowrap; }
+  .topbar-datetime .dt-am { font-size: 10.5px; color: var(--tb-lunar); font-weight: 500; white-space: nowrap; }
 
-  .topbar-right { display: flex; align-items: center; gap: 10px; }
+  .topbar-nav {
+    display: flex; align-items: center; gap: 2px;
+    padding: 0 12px;
+    flex: 1;
+  }
+  .topbar-nav-item {
+    padding: 6px 12px; border-radius: 6px; cursor: pointer;
+    font-size: 12.5px; font-weight: 600; color: var(--tb-text);
+    white-space: nowrap; transition: all 0.15s;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .topbar-nav-item:hover { background: rgba(255,255,255,0.35); }
+  .topbar-nav-item.active { background: rgba(255,255,255,0.5); color: var(--burgundy); }
+
+  .topbar-actions {
+    display: flex; align-items: center; gap: 6px;
+    margin-left: auto; flex-shrink: 0;
+  }
+  .tb-action {
+    padding: 6px 13px; border-radius: 6px; cursor: pointer;
+    font-size: 12px; font-weight: 600; color: var(--tb-text);
+    border: 1.5px solid rgba(90,45,0,0.22);
+    background: rgba(255,255,255,0.3);
+    font-family: inherit; transition: all 0.15s;
+    white-space: nowrap; display: flex; align-items: center; gap: 5px;
+  }
+  .tb-action:hover { background: rgba(255,255,255,0.5); border-color: rgba(90,45,0,0.4); }
+  .tb-action.primary {
+    background: var(--green-main); border-color: var(--green-main);
+    color: white; font-weight: 700;
+  }
+  .tb-action.primary:hover { background: var(--green-dark); border-color: var(--green-dark); }
+  .user-block {
+    display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer;
+  }
   .avatar {
     width: 34px; height: 34px; background: var(--tb-logo-text); color: var(--tb-bg);
     border-radius: 8px; font-weight: 800; font-size: 13px;
-    display: flex; align-items: center; justify-content: center; cursor: pointer; letter-spacing: 0.5px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; letter-spacing: 0.5px;
   }
-  .user-info { display: flex; flex-direction: column; line-height: 1.2; }
-  .user-info .name { font-size: 13px; font-weight: 700; color: var(--tb-text); }
-  .user-info .role { font-size: 10px; color: var(--tb-lunar); font-weight: 500; }
-
-  /* SUBNAV */
-  .subnav {
-    background: #f5ede0; display: flex; align-items: center;
-    padding: 0 20px; gap: 2px; height: 42px;
-    border-bottom: 2px solid #d4b896; box-shadow: 0 1px 4px rgba(160,100,40,0.08);
-  }
-  .subnav-item {
-    padding: 8px 14px; color: #6b3f1a; border-radius: var(--radius-sm);
-    cursor: pointer; font-size: 12.5px; font-weight: 600;
-    display: flex; align-items: center; gap: 6px; transition: all 0.2s; white-space: nowrap;
-  }
-  .subnav-item:hover { background: rgba(160,100,40,0.1); color: #3d1f00; }
-  .subnav-item.active { background: var(--green-main); color: white; font-weight: 700; }
-  .subnav-right { margin-left: auto; display: flex; gap: 6px; }
-  .subnav-action {
-    background: rgba(160,100,40,0.1); border: 1px solid #c9a07a; color: #5a2e00;
-    padding: 5px 12px; border-radius: 6px; font-size: 12px; cursor: pointer;
-    font-family: inherit; font-weight: 600; transition: all 0.2s;
-    display: flex; align-items: center; gap: 5px;
-  }
-  .subnav-action:hover { background: rgba(160,100,40,0.18); border-color: #a07050; }
-  .subnav-action.primary { background: var(--green-main); border-color: var(--green-main); color: white; font-weight: 700; }
-  .subnav-action.primary:hover { background: var(--green-dark); border-color: var(--green-dark); }
+  .user-info { display: flex; flex-direction: column; align-items: center; line-height: 1.2; }
+  .user-info .user-name { font-size: 11px; font-weight: 700; color: var(--tb-text); white-space: nowrap; }
+  .user-info .user-role { font-size: 9.5px; color: var(--tb-lunar); font-weight: 500; white-space: nowrap; }
 
   /* CONTENT */
-  .content { max-width: 1420px; margin: 0 auto; padding: 16px 20px; }
+  .content { max-width: 1480px; margin: 0 auto; padding: 14px 18px; }
 
   /* BAN HEADER */
   .ban-header {
-    background: white; border-radius: var(--radius); padding: 14px 18px; margin-bottom: 14px;
+    background: white; border-radius: var(--radius); padding: 12px 16px; margin-bottom: 12px;
     display: flex; align-items: center; justify-content: space-between;
     box-shadow: var(--shadow-sm); border-left: 4px solid var(--green-main);
   }
-  .ban-info h2 { font-size: 22px; font-weight: 800; color: var(--burgundy); letter-spacing: -0.3px; }
-  .ban-info .meta { font-size: 13px; color: #2d3f35; margin-top: 3px; font-weight: 600; }
+  .ban-info h2 { font-size: 20px; font-weight: 800; color: var(--burgundy); letter-spacing: -0.3px; }
+  .ban-info .meta { font-size: 12.5px; color: #2d3f35; margin-top: 2px; font-weight: 600; }
 
   /* FILTER BAR */
   .filter-bar {
-    background: white; border-radius: var(--radius); padding: 10px 14px; margin-bottom: 14px;
+    background: white; border-radius: var(--radius); padding: 9px 13px; margin-bottom: 12px;
     display: flex; align-items: center; gap: 8px; flex-wrap: wrap; box-shadow: var(--shadow-sm);
   }
-  .filter-label { font-size: 11.5px; font-weight: 600; color: var(--gray-600); white-space: nowrap; }
-  .filter-btn {
-    padding: 5px 12px; border-radius: 20px; border: 1.5px solid var(--gray-300);
+
+  /* Custom dropdowns */
+  .dropdown-wrap { position: relative; display: inline-flex; align-items: center; }
+  .dropdown-btn {
+    padding: 5px 12px; border-radius: 7px;
+    border: 1.5px solid var(--gray-300);
     background: var(--gray-100); font-family: inherit; font-size: 12px; cursor: pointer;
-    color: var(--gray-600); font-weight: 500; transition: all 0.2s;
-    display: flex; align-items: center; gap: 6px; white-space: nowrap;
+    color: var(--gray-600); font-weight: 600; transition: all 0.2s;
+    display: flex; align-items: center; gap: 6px; white-space: nowrap; user-select: none;
   }
-  .filter-btn:hover { border-color: var(--green-light); color: var(--green-dark); background: var(--green-pale); }
-  .filter-btn.active { background: var(--green-main); border-color: var(--green-main); color: white; }
-  .filter-btn.urgent.active { background: var(--red-urgent); border-color: var(--red-urgent); }
-  .filter-btn.important.active { background: var(--orange); border-color: var(--orange); }
-  .filter-btn.waiting.active { background: #c9a84c; border-color: #c9a84c; color: #fff; }
+  .dropdown-btn:hover { border-color: var(--green-light); color: var(--green-dark); background: var(--green-pale); }
+  .dropdown-btn.has-value { background: var(--green-main); border-color: var(--green-main); color: white; }
+  .dropdown-btn .dd-arrow { font-size: 9px; opacity: 0.7; margin-left: 2px; }
 
-  /* priority dot for filter buttons */
-  .dot {
-    width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; display: inline-block;
+  .dropdown-menu {
+    display: none; position: absolute; top: calc(100% + 5px); left: 0; z-index: 200;
+    background: white; border: 1.5px solid var(--gray-300); border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12); min-width: 200px; overflow: hidden;
+    animation: ddIn 0.12s ease;
   }
-  .dot-red { background: var(--red-urgent); }
-  .dot-orange { background: var(--orange); }
-  .dot-gold { background: #c9a84c; }
-  .dot-all { background: var(--green-mid); }
+  @keyframes ddIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:translateY(0); } }
+  .dropdown-wrap.open .dropdown-menu { display: block; }
 
-  .filter-sep { width: 1px; height: 20px; background: var(--gray-300); }
-  .sort-select {
-    margin-left: auto; padding: 5px 10px; border-radius: 6px;
-    border: 1.5px solid var(--gray-300); font-family: inherit; font-size: 12px;
-    color: var(--gray-600); background: white; cursor: pointer;
+  .dd-item {
+    padding: 9px 14px; font-size: 12.5px; font-weight: 500; cursor: pointer;
+    color: var(--gray-800); display: flex; align-items: center; gap: 9px;
+    transition: background 0.12s; white-space: nowrap;
   }
-  .sort-select:focus { outline: none; border-color: var(--green-light); }
+  .dd-item:hover { background: var(--green-pale); color: var(--green-dark); }
+  .dd-item.selected { background: var(--green-pale); color: var(--green-dark); font-weight: 700; }
+  .dd-item .dd-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+  .dd-sep { height: 1px; background: var(--gray-200); margin: 3px 0; }
+
+  /* Date range picker */
+  .date-range-row { display: flex; gap: 6px; padding: 8px 10px; border-top: 1px solid var(--gray-200); }
+  .date-range-row input[type=date] {
+    border: 1.5px solid var(--gray-300); border-radius: 5px; padding: 4px 7px;
+    font-family: inherit; font-size: 11.5px; color: var(--gray-800); flex: 1;
+  }
+  .date-apply-btn {
+    padding: 4px 10px; background: var(--green-main); color: white; border: none;
+    border-radius: 5px; font-family: inherit; font-size: 11.5px; font-weight: 700; cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .filter-sep { width: 1px; height: 22px; background: var(--gray-300); }
 
   /* TABLE */
   .table-wrap { background: white; border-radius: var(--radius); box-shadow: var(--shadow-sm); overflow: hidden; border: 2px solid #2d3f2d; }
   .task-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  .task-table colgroup col:nth-child(1) { width: 22%; }
+  .task-table colgroup col:nth-child(2) { width: 26%; }
+  .task-table colgroup col:nth-child(3) { width: 26%; }
+  .task-table colgroup col:nth-child(4) { width: 26%; }
+
   .task-table thead th {
     background: var(--green-dark); color: white; padding: 10px 14px; text-align: left;
     font-size: 12.5px; font-weight: 700; letter-spacing: 0.3px; white-space: nowrap;
     border-right: 1px solid rgba(255,255,255,0.15);
   }
   .task-table thead th:last-child { border-right: none; }
-  .task-table thead th:first-child { width: 230px; }
   .task-table thead th.col-sp { color: var(--gold-light); }
-  .task-table thead th .th-icon { margin-right: 5px; }
 
   .task-table tbody tr { border-bottom: 1.5px solid #b0bfb0; transition: background 0.15s; background: #fdf8f0; }
   .task-table tbody tr:last-child { border-bottom: none; }
   .task-table tbody tr:hover { background: #faf0d0; }
-  .task-table tbody tr.row-urgent { background: #fdf8f0; }
-  .task-table tbody tr.row-urgent:hover { background: #faf0d0; }
-  .task-table tbody tr.row-done { background: #fdf8f0; opacity: 0.88; }
+  .task-table tbody tr.row-done { background: #f5f8f5; opacity: 0.82; }
+  .task-table tbody tr.row-overdue { background: #fff5f5; }
 
   .task-table td {
     padding: 12px 14px; vertical-align: top; font-size: 13px;
     color: #111a14; font-weight: 500; border-right: 1.5px solid #b0bfb0;
+    word-break: break-word;
   }
   .task-table td:last-child { border-right: none; }
 
   /* TASK CELL */
-  .task-name-row { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 4px; }
+  .task-name-row { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 5px; }
   .priority-dot {
-    width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; margin-top: 3px;
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 3px;
   }
   .priority-dot.urgent { background: var(--red-urgent); box-shadow: 0 0 0 2px rgba(192,57,43,0.18); }
   .priority-dot.important { background: var(--orange); box-shadow: 0 0 0 2px rgba(224,123,57,0.18); }
   .priority-dot.waiting { background: #c9a84c; box-shadow: 0 0 0 2px rgba(201,168,76,0.18); }
+  .priority-dot.overdue { background: #8b1a1a; box-shadow: 0 0 0 2px rgba(139,26,26,0.2); }
+  .priority-dot.done { background: #52b788; }
   .priority-dot.normal { background: var(--green-light); }
 
-  .task-name { font-weight: 800; font-size: 14px; color: #0a1f10; line-height: 1.3; }
-  .task-detail { font-size: 12.5px; color: #1a2e1a; font-weight: 500; margin: 4px 0; line-height: 1.45; border-left: 2px solid var(--green-light); padding-left: 7px; }
-  .task-meta { display: flex; flex-direction: column; gap: 3px; margin-top: 4px; }
-  .task-time { font-size: 12px; color: var(--burgundy); font-weight: 700; display: flex; align-items: center; gap: 4px; }
+  .task-name { font-weight: 800; font-size: 13.5px; color: #0a1f10; line-height: 1.3; }
+  .task-detail { font-size: 12px; color: #2d3f2d; font-weight: 500; margin: 4px 0; line-height: 1.45; }
+  .task-meta { display: flex; flex-direction: column; gap: 3px; margin-top: 5px; }
+  .task-time { font-size: 11.5px; color: var(--burgundy); font-weight: 700; display: flex; align-items: center; gap: 4px; }
   .task-detail-link {
     display: inline-flex; align-items: center; gap: 3px;
     font-size: 11.5px; font-weight: 600; color: var(--green-mid);
-    cursor: pointer; margin-top: 2px; transition: color 0.15s; text-decoration: none;
-    padding-left: 0;
+    cursor: pointer; margin-top: 3px; transition: color 0.15s; text-decoration: none;
   }
   .task-detail-link:hover { color: var(--green-dark); text-decoration: underline; }
 
-  /* OPINION CELL */
+  /* STATUS BADGE */
+  .status-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 12px;
+    margin-top: 4px;
+  }
+  .status-badge.urgent { background: #fdf0ef; color: var(--red-urgent); border: 1px solid #f5c6c2; }
+  .status-badge.important { background: #fff4ec; color: var(--orange); border: 1px solid #f5d5b8; }
+  .status-badge.waiting { background: #fff9ec; color: #8b6a00; border: 1px solid #f0d880; }
+  .status-badge.overdue { background: #fdf0f0; color: #8b1a1a; border: 1px solid #e0b8b8; }
+  .status-badge.done { background: #edf8f2; color: #1a6b40; border: 1px solid #b8dfc8; }
+
+  /* OPINION CELLS */
   .opinion-cell { font-size: 12.5px; line-height: 1.55; color: #111a14; font-weight: 500; margin-bottom: 5px; }
-  .opinion-author { font-size: 11px; color: #2d3f35; margin-top: 3px; display: flex; align-items: center; gap: 4px; font-weight: 600; }
-  .opinion-author .ban-tag { background: var(--green-pale); color: #0f2d1c; padding: 1px 6px; border-radius: 4px; font-weight: 700; font-size: 10.5px; }
+  .opinion-author { font-size: 11px; color: #2d3f35; display: flex; align-items: center; gap: 4px; font-weight: 600; }
+  .opinion-author .ban-tag { background: #e8f5ee; color: #0f2d1c; padding: 1px 6px; border-radius: 4px; font-weight: 700; font-size: 10.5px; }
   .opinion-author.sp .ban-tag { background: #ffe0e0; color: #8b0000; }
   .opinion-author.bld .ban-tag { background: #fff3cd; color: #7a5a00; }
 
-  /* SP CELL: two blocks stacked */
-  .sp-cell { border-left: 2px solid var(--gold); padding-left: 12px; }
   .sp-block { margin-bottom: 10px; }
   .sp-block:last-child { margin-bottom: 0; }
   .sp-block-sep { height: 1px; background: rgba(201,168,76,0.3); margin: 10px 0; }
+  .sp-cell { border-left: 2px solid var(--gold); padding-left: 10px; }
 
   .empty-cell { color: #4a5a4a; font-size: 12px; font-style: italic; font-weight: 500; }
 
+  /* BOTTOM BAR */
+  .bottom-bar {
+    display: flex; align-items: center; padding: 10px 2px;
+    gap: 12px;
+  }
+  .result-count {
+    font-size: 12px; color: var(--gray-600); font-weight: 600; white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .result-count span { color: var(--green-dark); font-weight: 800; }
+
   /* PAGINATION */
-  .pagination { display: flex; justify-content: center; align-items: center; gap: 4px; padding: 20px 0 8px; }
+  .pagination { display: flex; justify-content: center; align-items: center; gap: 3px; flex: 1; }
   .pg-btn {
-    min-width: 32px; height: 32px; border-radius: 6px; border: 1.5px solid var(--gray-300);
-    background: white; color: #2d3f35; font-size: 12.5px; font-weight: 600;
+    min-width: 30px; height: 30px; border-radius: 6px; border: 1.5px solid var(--gray-300);
+    background: white; color: #2d3f35; font-size: 12px; font-weight: 600;
     cursor: pointer; font-family: inherit; display: flex; align-items: center; justify-content: center;
     padding: 0 6px; transition: all 0.15s;
   }
-  .pg-btn:hover { border-color: var(--green-light); background: var(--green-pale); color: var(--green-dark); }
+  .pg-btn:hover { border-color: var(--green-light); background: #e8f5ee; color: var(--green-dark); }
   .pg-btn.active { background: var(--green-main); border-color: var(--green-main); color: white; }
-  .pg-btn.pg-nav { color: var(--gray-600); font-size: 14px; }
+  .pg-btn.pg-nav { color: var(--gray-600); font-size: 13px; }
+  .pg-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .pg-ellipsis { color: var(--gray-500); font-size: 12px; padding: 0 4px; }
 
   .empty-row td { text-align: center; padding: 40px; color: var(--gray-500); font-size: 13px; }
 
@@ -261,420 +310,527 @@
 </head>
 <body>
 
+<!-- TOPBAR -->
 <div class="topbar">
-  <div class="topbar-left">
+  <div class="topbar-brand">
     <div class="logo-icon">
-      <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
+      <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
         <rect width="42" height="42" rx="8" fill="#7a3a00"/>
         <rect x="12" y="26" width="18" height="10" fill="#fad96a"/>
         <rect x="18" y="28" width="6" height="8" rx="1" fill="#7a3a00"/>
         <polygon points="6,26 21,17 36,26" fill="#fad96a"/>
         <polygon points="12,19 21,12 30,19" fill="#f0d080"/>
         <polygon points="18,12 21,6 24,12" fill="#ffffff"/>
-        <line x1="21" y1="6" x2="21" y2="4" stroke="#ffffff" stroke-width="1" stroke-linecap="round"/>
         <rect x="13" y="26" width="2" height="10" fill="#c9a84c"/>
         <rect x="27" y="26" width="2" height="10" fill="#c9a84c"/>
       </svg>
     </div>
-    <div class="app-name">
-      <span class="main">Quản Lý Công Việc</span>
-    </div>
+    <span class="app-name">Quản Lý Công Việc</span>
   </div>
-  <div class="topbar-date-tabs" id="topbarDateTabs"></div>
-  <div class="topbar-right">
-    <div class="avatar">PA</div>
-    <div class="user-info">
-      <span class="name">Phan Tuấn Anh</span>
-      <span class="role">Ban Tri Sự · Trưởng ban</span>
-    </div>
-  </div>
-</div>
 
-<div class="subnav">
-  <div class="subnav-item">🏠 Trang Chủ</div>
-  <div class="subnav-item active">📋 Ban Hương Đăng</div>
-  <div class="subnav-item">📅 Lịch Công Tác</div>
-  <div class="subnav-item">📦 Dự Toán Cung Ứng</div>
-  <div class="subnav-right">
-    <button class="subnav-action">📢 Thông Báo Toàn Chùa</button>
-    <button class="subnav-action">+ Đề Xuất</button>
-    <button class="subnav-action primary">+ Thêm Việc</button>
+  <div class="topbar-datetime" id="topbarDatetime">
+    <span class="dt-duong" id="dtDuong"></span>
+    <span class="dt-am" id="dtAm"></span>
+  </div>
+
+  <div class="topbar-nav">
+    <div class="topbar-nav-item active">🏠 Trang Chủ</div>
+  </div>
+
+  <div class="topbar-actions">
+    <button class="tb-action">📢 Thông Báo Toàn Chùa</button>
+    <button class="tb-action">+ Đề Xuất</button>
+    <button class="tb-action primary">+ Thêm Việc</button>
+    <div class="user-block">
+      <div class="avatar">PA</div>
+      <div class="user-info">
+        <span class="user-name">Phan Tuấn Anh</span>
+        <span class="user-role">Ban Tri Sự · Trưởng Ban</span>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="content">
+  <!-- BAN HEADER -->
   <div class="ban-header">
     <div class="ban-info">
       <h2>BAN HƯƠNG ĐĂNG</h2>
-      <div class="meta">Trưởng Ban: <strong>An Hạnh Liên</strong> &nbsp;|&nbsp; <strong>0123456789</strong></div>
+      <div class="meta">Trưởng Ban: <strong>An Hạnh Liên</strong> &nbsp;|&nbsp; <strong>0123 456 789</strong></div>
     </div>
   </div>
 
+  <!-- FILTER BAR -->
   <div class="filter-bar">
-    <span class="filter-label">Lọc:</span>
-    <button class="filter-btn urgent active" onclick="setFilter('urgent',this)">
-      <span class="dot dot-red"></span> Khẩn Cấp
-    </button>
-    <button class="filter-btn important" onclick="setFilter('important',this)">
-      <span class="dot dot-orange"></span> Quan Trọng
-    </button>
-    <button class="filter-btn waiting" onclick="setFilter('waiting',this)">
-      <span class="dot dot-gold"></span> Đang Chờ Xin Ý Kiến
-    </button>
+
+    <!-- Trạng thái -->
+    <div class="dropdown-wrap" id="ddStatus">
+      <div class="dropdown-btn" onclick="toggleDD('ddStatus')">
+        <span id="ddStatusLabel">Trạng thái</span>
+        <span class="dd-arrow">▼</span>
+      </div>
+      <div class="dropdown-menu">
+        <div class="dd-item" onclick="setStatus('',this)"><span class="dd-dot" style="background:#52b788"></span>Tất cả</div>
+        <div class="dd-sep"></div>
+        <div class="dd-item" onclick="setStatus('urgent',this)"><span class="dd-dot" style="background:#c0392b"></span>Khẩn Cấp</div>
+        <div class="dd-item" onclick="setStatus('important',this)"><span class="dd-dot" style="background:#e07b39"></span>Quan Trọng</div>
+        <div class="dd-item" onclick="setStatus('waiting',this)"><span class="dd-dot" style="background:#c9a84c"></span>Đang Chờ Xin Ý Kiến</div>
+        <div class="dd-item" onclick="setStatus('overdue',this)"><span class="dd-dot" style="background:#8b1a1a"></span>Quá Hạn</div>
+        <div class="dd-item" onclick="setStatus('done',this)"><span class="dd-dot" style="background:#52b788"></span>Hoàn Thành</div>
+      </div>
+    </div>
+
     <div class="filter-sep"></div>
-    <button class="filter-btn" onclick="setFilter('all',this)">
-      <span class="dot dot-all"></span> Tất Cả Công Việc
-    </button>
-    <select class="sort-select" onchange="sortTasks(this.value)">
-      <option value="">↕ Sắp xếp theo...</option>
-      <option value="deadline">⏰ Hạn cuối</option>
-      <option value="name">🔤 Tên công việc</option>
-    </select>
+
+    <!-- Sắp xếp theo ngày -->
+    <div class="dropdown-wrap" id="ddDate">
+      <div class="dropdown-btn" onclick="toggleDD('ddDate')">
+        <span id="ddDateLabel">📅 Sắp xếp theo ngày</span>
+        <span class="dd-arrow">▼</span>
+      </div>
+      <div class="dropdown-menu" style="min-width:230px">
+        <div class="dd-item" onclick="setDateFilter('',this)">Tất cả thời gian</div>
+        <div class="dd-sep"></div>
+        <div class="dd-item" onclick="setDateFilter('yesterday',this)">⬅ Hôm qua</div>
+        <div class="dd-item" onclick="setDateFilter('today',this)">● Hôm nay</div>
+        <div class="dd-item" onclick="setDateFilter('tomorrow',this)">➡ Ngày mai</div>
+        <div class="dd-item" onclick="setDateFilter('week',this)">📆 1 tuần tới</div>
+        <div class="dd-sep"></div>
+        <div class="dd-item" style="font-weight:700;color:#2d6a4f;cursor:default">Tùy chọn khoảng thời gian:</div>
+        <div class="date-range-row">
+          <input type="date" id="dateFrom" />
+          <input type="date" id="dateTo" />
+          <button class="date-apply-btn" onclick="applyDateRange()">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-sep"></div>
+
+    <!-- Ban phối hợp -->
+    <div class="dropdown-wrap" id="ddBan">
+      <div class="dropdown-btn" onclick="toggleDD('ddBan')">
+        <span id="ddBanLabel">🤝 Ban phối hợp</span>
+        <span class="dd-arrow">▼</span>
+      </div>
+      <div class="dropdown-menu">
+        <div class="dd-item" onclick="setBan('',this)">Tất cả các ban</div>
+        <div class="dd-sep"></div>
+        <div class="dd-item" onclick="setBan('Ban Trang Trí',this)">Ban Trang Trí</div>
+        <div class="dd-item" onclick="setBan('Ban Vật Tư',this)">Ban Vật Tư</div>
+        <div class="dd-item" onclick="setBan('Ban Truyền Thông',this)">Ban Truyền Thông</div>
+        <div class="dd-item" onclick="setBan('Ban Hương Đăng',this)">Ban Hương Đăng</div>
+        <div class="dd-item" onclick="setBan('Ban Tri Sự',this)">Ban Tri Sự</div>
+        <div class="dd-item" onclick="setBan('Ban Tài Chính',this)">Ban Tài Chính</div>
+        <div class="dd-item" onclick="setBan('Ban Hộ Niệm',this)">Ban Hộ Niệm</div>
+      </div>
+    </div>
+
   </div>
 
+  <!-- TABLE -->
   <div class="table-wrap">
     <table class="task-table" id="taskTable">
+      <colgroup>
+        <col><col><col><col>
+      </colgroup>
       <thead>
         <tr>
-          <th><span class="th-icon">📋</span>Đầu Mục Công Việc</th>
-          <th><span class="th-icon">🤝</span>Ý Kiến Ban Phối Hợp</th>
-          <th><span class="th-icon">📝</span>Ý Kiến BTS</th>
-          <th class="col-sp"><span class="th-icon">⚑</span>Sư Phụ / BLĐ Chỉ Dạy</th>
+          <th>📋 Đầu Mục Công Việc</th>
+          <th>🤝 Ý Kiến Ban Phối Hợp</th>
+          <th>📝 Ý Kiến BTS</th>
+          <th class="col-sp">⚑ Sư Phụ / BLĐ Chỉ Dạy</th>
         </tr>
       </thead>
       <tbody id="taskBody"></tbody>
     </table>
   </div>
-  <div class="pagination" id="pagination"></div>
+
+  <!-- BOTTOM BAR -->
+  <div class="bottom-bar">
+    <div class="result-count" id="resultCount"></div>
+    <div class="pagination" id="pagination"></div>
+    <div style="width:120px;flex-shrink:0"></div>
+  </div>
 </div>
 
 <script>
-// ── Lunar date lookup ──────────────────────────────────────────────────
-function getLunarDate(date) {
-  const table = {
-    '2026-04-30': { day: 13, month: 3 },
-    '2026-05-01': { day: 14, month: 3 },
-    '2026-05-02': { day: 15, month: 3 },
-    '2026-05-03': { day: 16, month: 3 },
-    '2026-05-04': { day: 17, month: 3 },
-    '2026-05-05': { day: 18, month: 3 },
-    '2026-05-06': { day: 19, month: 3 },
-    '2026-05-07': { day: 20, month: 3 },
-    '2026-05-08': { day: 21, month: 3 },
-    '2026-05-09': { day: 22, month: 3 },
-    '2026-05-10': { day: 23, month: 3 },
-    '2026-05-11': { day: 24, month: 3 },
-    '2026-05-12': { day: 25, month: 3 },
-    '2026-05-13': { day: 26, month: 3 },
-    '2026-05-14': { day: 27, month: 3 },
-    '2026-05-15': { day: 28, month: 3 },
-  };
-  const key = date.toISOString().split('T')[0];
-  return table[key] || { day: '—', month: '—' };
+// ── Lunar date ──────────────────────────────────────────────────
+const LUNAR_TABLE = {
+  '2026-04-28':{ day:11,month:3 },'2026-04-29':{ day:12,month:3 },
+  '2026-04-30':{ day:13,month:3 },'2026-05-01':{ day:14,month:3 },
+  '2026-05-02':{ day:15,month:3 },'2026-05-03':{ day:16,month:3 },
+  '2026-05-04':{ day:17,month:3 },'2026-05-05':{ day:18,month:3 },
+  '2026-05-06':{ day:19,month:3 },'2026-05-07':{ day:20,month:3 },
+  '2026-05-08':{ day:21,month:3 },'2026-05-09':{ day:22,month:3 },
+  '2026-05-10':{ day:23,month:3 },'2026-05-11':{ day:24,month:3 },
+  '2026-05-12':{ day:25,month:3 },'2026-05-13':{ day:26,month:3 },
+  '2026-05-14':{ day:27,month:3 },'2026-05-15':{ day:28,month:3 },
+};
+const THU = ['Chủ Nhật','Thứ Hai','Thứ Ba','Thứ Tư','Thứ Năm','Thứ Sáu','Thứ Bảy'];
+
+function getLunar(d) {
+  const k = d.toISOString().split('T')[0];
+  return LUNAR_TABLE[k] || null;
 }
 
-const THU_FULL = ['Chủ Nhật','Thứ Hai','Thứ Ba','Thứ Tư','Thứ Năm','Thứ Sáu','Thứ Bảy'];
-
-function formatDuong(d) {
-  const thu = THU_FULL[d.getDay()];
-  const dd = String(d.getDate()).padStart(2,'0');
-  const mm = String(d.getMonth()+1).padStart(2,'0');
-  const yyyy = d.getFullYear();
-  return `${thu}, ${dd}/${mm}/${yyyy}`;
+function initTopbarDatetime() {
+  const now = new Date();
+  const thu = THU[now.getDay()];
+  const dd = String(now.getDate()).padStart(2,'0');
+  const mm = String(now.getMonth()+1).padStart(2,'0');
+  const yyyy = now.getFullYear();
+  document.getElementById('dtDuong').textContent = `${thu}, ${dd}/${mm}/${yyyy}`;
+  const lunar = getLunar(new Date(now.toISOString().split('T')[0]));
+  if (lunar) {
+    document.getElementById('dtAm').textContent = `🌙 ${lunar.day} tháng ${lunar.month} Âm Lịch`;
+  }
 }
 
-let today = new Date();
-today.setHours(0,0,0,0);
-
-function renderTopbarDateTabs() {
-  const container = document.getElementById('topbarDateTabs');
-  const slots = [
-    { rel: -1, label: 'Hôm qua' },
-    { rel:  0, label: 'Hôm nay' },
-    { rel:  1, label: 'Ngày mai' },
-  ];
-  let html = '';
-  slots.forEach(({ rel, label }, i) => {
-    const d = new Date(today);
-    d.setDate(today.getDate() + rel);
-    const lunar = getLunarDate(d);
-    const isToday = rel === 0;
-    if (i > 0) html += `<div class="topbar-date-sep"></div>`;
-    html += `
-      <div class="topbar-date-tab${isToday ? ' active' : ''}">
-        <span class="tab-label">${label}</span>
-        <span class="tab-duong">${formatDuong(d)}</span>
-        <span class="tab-am">🌙 ${lunar.day} tháng ${lunar.month} Âm Lịch</span>
-      </div>`;
-  });
-  container.innerHTML = html;
+// ── Truncate to 100 chars at word boundary ──────────────────────
+function truncate100(str) {
+  if (!str || str.length <= 100) return str;
+  // Try to break at a space within the first 100 chars
+  let cut = str.lastIndexOf(' ', 100);
+  if (cut < 60) cut = 100;
+  return str.substring(0, cut).trimEnd() + '…';
 }
 
-// ── Task data ──────────────────────────────────────────────────────────
-// priority: 'urgent' | 'important' | 'waiting'
-// deadlineDaysLeft: computed from deadline for sorting (lower = more urgent)
+// ── Task data ───────────────────────────────────────────────────
 const tasks = [
   {
-    id: 1,
-    priority: 'urgent',
+    id: 1, priority: 'urgent',
     name: 'Trang Trí Lễ Đài Phật Đản',
     detail: 'Trang trí chánh điện, lễ đài và cổng tam quan với hoa sen, đèn lồng, phướn; bố trí khung cảnh trang nghiêm phục vụ Đại Lễ Phật Đản.',
-    timeAm: '21/3 – 27/3/ÂL',
-    deadlineDaysLeft: 9,
-    phoi_hop: {
-      text: 'Đã lên phương án hoa sen 3 tầng tại lễ đài chính. Cần thêm 200 đèn lồng và 50 phướn lớn. Xin phê duyệt kinh phí bổ sung.',
-      author: 'Ban Trang Trí', dateAm: '17/3/ÂL', time: '08:30'
-    },
-    bts: {
-      text: 'Đã xem xét phương án. Đề nghị bổ sung dải vải vàng tại lối vào chánh điện. Cần phê duyệt kinh phí trước 07/05.',
-      author: 'BTS', dateAm: '17/3/ÂL', time: '09:00'
-    },
-    sp: {
-      text: 'Lễ đài phải trang nghiêm, thanh tịnh. Hoa sen là biểu trưng của Đức Phật — cần bày trí đúng vị trí, không quá rườm rà. Phướn treo phải thẳng, không lệch. Giao Ban Trang Trí hoàn thành trước 13/05 để Thầy kiểm tra.',
-      author: 'Sư Phụ', dateAm: '18/3/ÂL', time: '20:30'
-    },
+    timeAm: '21/3 – 27/3/ÂL', deadlineDaysLeft: 9, deadline: '2026-05-14',
+    banPhoiHop: ['Ban Trang Trí','Ban Vật Tư'],
+    phoi_hop: { text: 'Đã lên phương án hoa sen 3 tầng tại lễ đài chính. Cần thêm 200 đèn lồng và 50 phướn lớn. Xin phê duyệt kinh phí bổ sung từ Ban Tài Chính trước 10/05.', author: 'Ban Trang Trí', dateAm: '17/3/ÂL', time: '08:30' },
+    bts: { text: 'Đã xem xét phương án. Đề nghị bổ sung dải vải vàng tại lối vào chánh điện. Cần phê duyệt kinh phí trước 07/05.', author: 'BTS', dateAm: '17/3/ÂL', time: '09:00' },
+    sp: { text: 'Lễ đài phải trang nghiêm, thanh tịnh. Hoa sen là biểu trưng của Đức Phật — cần bày trí đúng vị trí, không quá rườm rà. Phướn treo phải thẳng. Giao Ban Trang Trí hoàn thành trước 13/05 để Thầy kiểm tra.', author: 'Sư Phụ', dateAm: '18/3/ÂL', time: '20:30' },
     bld: null
   },
   {
-    id: 2,
-    priority: 'urgent',
+    id: 2, priority: 'urgent',
     name: 'Dự Toán & Cung Ứng Vật Tư Phật Đản',
     detail: 'Lập danh mục và mua sắm toàn bộ vật tư: nến bơ thuần chay, nhang trầm, hoa tươi, dầu đèn, vải vàng, phướn, đèn lồng cho Đại Lễ.',
-    timeAm: '19/3/ÂL',
-    deadlineDaysLeft: 1,
-    phoi_hop: {
-      text: 'Đã lập danh mục 28 mặt hàng, tổng dự toán ~15.200.000đ. Đề nghị Ban Tài Chính giải ngân tạm ứng 70% để đặt hàng sớm, tránh thiếu hàng dịp lễ.',
-      author: 'Ban Vật Tư', dateAm: '17/3/ÂL', time: '07:30'
-    },
-    bts: {
-      text: 'Đã xem danh mục. Yêu cầu bổ sung nến bơ cỡ lớn (tối thiểu 80 thùng). Đang chờ Sư Phụ phê duyệt tổng mức kinh phí.',
-      author: 'BTS', dateAm: '17/3/ÂL', time: '08:00'
-    },
+    timeAm: '19/3/ÂL', deadlineDaysLeft: 1, deadline: '2026-05-07',
+    banPhoiHop: ['Ban Vật Tư','Ban Tài Chính'],
+    phoi_hop: { text: 'Đã lập danh mục 28 mặt hàng, tổng dự toán ~15.200.000đ. Đề nghị Ban Tài Chính giải ngân tạm ứng 70% để đặt hàng sớm, tránh thiếu hàng dịp lễ.', author: 'Ban Vật Tư', dateAm: '17/3/ÂL', time: '07:30' },
+    bts: { text: 'Đã xem danh mục. Yêu cầu bổ sung nến bơ cỡ lớn (tối thiểu 80 thùng). Đang chờ Sư Phụ phê duyệt tổng mức kinh phí.', author: 'BTS', dateAm: '17/3/ÂL', time: '08:00' },
     sp: null,
-    bld: {
-      text: 'BLĐ đã xem xét dự toán. Đồng ý phê duyệt mức chi. Lưu ý: ưu tiên nhà cung cấp thân thiện với chùa, đảm bảo hàng về trước 25/3/ÂL. Ban Vật Tư phải có biên nhận đầy đủ.',
-      author: 'BLĐ', dateAm: '18/3/ÂL', time: '14:00'
-    }
+    bld: { text: 'BLĐ đã xem xét dự toán. Đồng ý phê duyệt mức chi. Lưu ý: ưu tiên nhà cung cấp thân thiện với chùa, đảm bảo hàng về trước 25/3/ÂL.', author: 'BLĐ', dateAm: '18/3/ÂL', time: '14:00' }
   },
   {
-    id: 3,
-    priority: 'important',
-    name: 'Truyền Thông & Livestream Phật Đản',
-    detail: 'Thiết kế banner, poster, đăng thông báo mạng xã hội; chuẩn bị và vận hành hệ thống livestream toàn bộ chương trình Đại Lễ Phật Đản.',
-    timeAm: '28/3/ÂL – toàn ngày',
-    deadlineDaysLeft: 5,
-    phoi_hop: {
-      text: 'Đã thiết kế xong 3 mẫu banner chính. Kênh YouTube và Facebook Fanpage đã đăng thông báo lịch lễ. Đang thử nghiệm thiết bị livestream tại chánh điện, âm thanh ổn định.',
-      author: 'Ban Truyền Thông', dateAm: '18/3/ÂL', time: '10:00'
-    },
-    bts: {
-      text: 'Đề nghị đăng thêm lịch lễ trên nhóm Zalo phật tử và gửi thông báo SMS cho danh sách phật tử thân cận. Cần kiểm tra toàn bộ hệ thống âm thanh livestream trước 25/3/ÂL.',
-      author: 'BTS', dateAm: '18/3/ÂL', time: '10:30'
-    },
-    sp: {
-      text: 'Thiện tai! Ban Truyền Thông đã làm tốt. Nhắc thêm: nội dung đăng tải cần giữ văn phong trang trọng, đúng Chánh Pháp — không dùng ngôn ngữ thế tục hay hình ảnh không phù hợp. Livestream phải đảm bảo âm thanh rõ ràng để Phật tử ở xa cũng nghe được kinh tụng.',
-      author: 'Sư Phụ', dateAm: '18/3/ÂL', time: '11:00'
-    },
-    bld: null
-  },
-  {
-    id: 4,
-    priority: 'important',
-    name: 'Chuẩn Bị Hương Đăng & Lễ Vật',
-    detail: 'Sắp xếp hương, đèn, nến tại chánh điện và các ban thờ. Phân công trực hương đăng xuyên đêm 27/3/ÂL và toàn ngày 28/3/ÂL.',
-    timeAm: '27/3 – 28/3/ÂL',
-    deadlineDaysLeft: 9,
-    phoi_hop: {
-      text: 'Đã phân công 12 người trực hương đăng suốt đêm 27/3/ÂL và toàn ngày 28/3/ÂL. Đề nghị bổ sung thêm đèn dầu cỡ lớn cho khu vực sân ngoài và lối đi.',
-      author: 'Ban Hương Đăng', dateAm: '17/3/ÂL', time: '09:00'
-    },
-    bts: {
-      text: 'Đồng ý bổ sung đèn dầu. Nhắc Ban Hương Đăng kiểm tra kỹ an toàn phòng cháy khu vực thắp nến và đèn dầu, đặc biệt khu vực trong chánh điện.',
-      author: 'BTS', dateAm: '17/3/ÂL', time: '09:30'
-    },
-    sp: {
-      text: 'Hương đăng là việc thiêng liêng, cần người có tâm thành kính. Nhắc các vị trực hương đăng: giữ y phục chỉnh tề, tâm thanh tịnh, không nói chuyện ồn ào khi ở gần ban thờ. Thắp hương đúng giờ theo thời kinh. Ai trực ca đêm nhớ giữ sức khỏe.',
-      author: 'Sư Phụ', dateAm: '18/3/ÂL', time: '20:30'
-    },
-    bld: null
-  },
-  {
-    id: 5,
-    priority: 'urgent',
+    id: 3, priority: 'urgent',
     name: 'Phân Công Nhân Sự Đại Lễ Phật Đản',
     detail: 'Lập danh sách phân công cụ thể từng ban, từng vị trí trong toàn bộ chương trình. Đảm bảo đủ nhân sự đón tiếp phật tử từ sáng sớm 28/3/ÂL.',
-    timeAm: '22/3/ÂL',
-    deadlineDaysLeft: 4,
-    phoi_hop: {
-      text: 'Đã lập dự thảo phân công 68 nhân sự cho 6 ban. Đề nghị tất cả ban trưởng xác nhận danh sách trước 21/3/ÂL để kịp in và phổ biến.',
-      author: 'Ban Tri Sự', dateAm: '17/3/ÂL', time: '08:00'
-    },
-    bts: {
-      text: 'Đã xem dự thảo. Đề nghị tăng nhân sự tại khu vực đón tiếp (thêm 5 người) và bố trí nhân sự hỗ trợ riêng cho người cao tuổi và người khuyết tật.',
-      author: 'BTS', dateAm: '17/3/ÂL', time: '08:30'
-    },
-    sp: {
-      text: 'Phân công rõ ràng là điều rất quan trọng. Mỗi người phải biết rõ nhiệm vụ của mình — đúng giờ, đúng vị trí, đúng tâm. Đặc biệt lưu ý: không để phật tử chờ đợi tại cổng, cần đủ người đón tiếp từ rất sớm. Giao Ban Tri Sự hoàn thiện và gửi xác nhận đến tất cả ban trước 21/3/ÂL.',
-      author: 'Sư Phụ', dateAm: '18/3/ÂL', time: '12:00'
-    },
+    timeAm: '22/3/ÂL', deadlineDaysLeft: 4, deadline: '2026-05-10',
+    banPhoiHop: ['Ban Tri Sự'],
+    phoi_hop: { text: 'Đã lập dự thảo phân công 68 nhân sự cho 6 ban. Đề nghị tất cả ban trưởng xác nhận danh sách trước 21/3/ÂL để kịp in và phổ biến.', author: 'Ban Tri Sự', dateAm: '17/3/ÂL', time: '08:00' },
+    bts: { text: 'Đề nghị tăng nhân sự tại khu vực đón tiếp (thêm 5 người) và bố trí nhân sự hỗ trợ riêng cho người cao tuổi và người khuyết tật.', author: 'BTS', dateAm: '17/3/ÂL', time: '08:30' },
+    sp: { text: 'Phân công rõ ràng là điều rất quan trọng. Mỗi người phải biết rõ nhiệm vụ của mình — đúng giờ, đúng vị trí, đúng tâm. Không để phật tử chờ đợi tại cổng.', author: 'Sư Phụ', dateAm: '18/3/ÂL', time: '12:00' },
     bld: null
   },
   {
-    id: 6,
-    priority: 'waiting',
+    id: 4, priority: 'important',
+    name: 'Truyền Thông & Livestream Phật Đản',
+    detail: 'Thiết kế banner, poster, đăng thông báo mạng xã hội; chuẩn bị và vận hành hệ thống livestream toàn bộ chương trình Đại Lễ Phật Đản.',
+    timeAm: '28/3/ÂL – toàn ngày', deadlineDaysLeft: 5, deadline: '2026-05-11',
+    banPhoiHop: ['Ban Truyền Thông'],
+    phoi_hop: { text: 'Đã thiết kế xong 3 mẫu banner chính. Kênh YouTube và Facebook Fanpage đã đăng thông báo lịch lễ. Đang thử nghiệm thiết bị livestream tại chánh điện, âm thanh ổn định.', author: 'Ban Truyền Thông', dateAm: '18/3/ÂL', time: '10:00' },
+    bts: { text: 'Đề nghị đăng thêm lịch lễ trên nhóm Zalo phật tử và gửi thông báo SMS cho danh sách phật tử thân cận.', author: 'BTS', dateAm: '18/3/ÂL', time: '10:30' },
+    sp: { text: 'Thiện tai! Ban Truyền Thông đã làm tốt. Nhắc thêm: nội dung đăng tải cần giữ văn phong trang trọng, đúng Chánh Pháp. Livestream phải đảm bảo âm thanh rõ ràng để Phật tử ở xa cũng nghe được.', author: 'Sư Phụ', dateAm: '18/3/ÂL', time: '11:00' },
+    bld: null
+  },
+  {
+    id: 5, priority: 'important',
+    name: 'Chuẩn Bị Hương Đăng & Lễ Vật',
+    detail: 'Sắp xếp hương, đèn, nến tại chánh điện và các ban thờ. Phân công trực hương đăng xuyên đêm 27/3/ÂL và toàn ngày 28/3/ÂL.',
+    timeAm: '27/3 – 28/3/ÂL', deadlineDaysLeft: 9, deadline: '2026-05-14',
+    banPhoiHop: ['Ban Hương Đăng','Ban Vật Tư'],
+    phoi_hop: { text: 'Đã phân công 12 người trực hương đăng suốt đêm 27/3/ÂL và toàn ngày 28/3/ÂL. Đề nghị bổ sung thêm đèn dầu cỡ lớn cho khu vực sân ngoài và lối đi.', author: 'Ban Hương Đăng', dateAm: '17/3/ÂL', time: '09:00' },
+    bts: { text: 'Đồng ý bổ sung đèn dầu. Nhắc Ban Hương Đăng kiểm tra kỹ an toàn phòng cháy khu vực thắp nến và đèn dầu, đặc biệt khu vực trong chánh điện.', author: 'BTS', dateAm: '17/3/ÂL', time: '09:30' },
+    sp: { text: 'Hương đăng là việc thiêng liêng, cần người có tâm thành kính. Giữ y phục chỉnh tề, tâm thanh tịnh, không nói chuyện ồn ào khi ở gần ban thờ.', author: 'Sư Phụ', dateAm: '18/3/ÂL', time: '20:30' },
+    bld: null
+  },
+  {
+    id: 6, priority: 'waiting',
     name: 'Họp Kiểm Tra Tiến Độ Lần Cuối',
     detail: 'Họp toàn bộ các ban vào chiều 26/3/ÂL để rà soát tiến độ lần cuối, xử lý phát sinh và xác nhận mọi công tác đã sẵn sàng trước giờ khai lễ.',
-    timeAm: '26/3/ÂL · 14:00 – 17:00',
-    deadlineDaysLeft: 8,
-    phoi_hop: {
-      text: 'Đề xuất họp tại Hội Trường lớn, mời đầy đủ trưởng các ban. Cần chuẩn bị bảng kiểm tra tiến độ chi tiết theo từng hạng mục.',
-      author: 'Ban Tri Sự', dateAm: '17/3/ÂL', time: '13:00'
-    },
-    bts: {
-      text: 'Đồng ý. Yêu cầu mỗi ban chuẩn bị báo cáo tiến độ ngắn gọn (tối đa 5 phút/ban) để cuộc họp nhanh gọn và hiệu quả.',
-      author: 'BTS', dateAm: '17/3/ÂL', time: '13:30'
-    },
-    sp: null,
+    timeAm: '26/3/ÂL · 14:00–17:00', deadlineDaysLeft: 8, deadline: '2026-05-13',
+    banPhoiHop: ['Ban Tri Sự'],
+    phoi_hop: { text: 'Đề xuất họp tại Hội Trường lớn, mời đầy đủ trưởng các ban. Cần chuẩn bị bảng kiểm tra tiến độ chi tiết theo từng hạng mục.', author: 'Ban Tri Sự', dateAm: '17/3/ÂL', time: '13:00' },
+    bts: { text: 'Đồng ý. Yêu cầu mỗi ban chuẩn bị báo cáo tiến độ ngắn gọn (tối đa 5 phút/ban) để cuộc họp nhanh gọn và hiệu quả.', author: 'BTS', dateAm: '17/3/ÂL', time: '13:30' },
+    sp: null, bld: null
+  },
+  {
+    id: 7, priority: 'waiting',
+    name: 'Xin Ý Kiến Sư Phụ Về Thực Đơn Lễ',
+    detail: 'Đệ trình thực đơn tiệc chay phục vụ phật tử sau lễ. Xin Sư Phụ duyệt trước khi chuyển Ban Vật Tư đặt hàng nguyên liệu.',
+    timeAm: '20/3/ÂL', deadlineDaysLeft: 3, deadline: '2026-05-09',
+    banPhoiHop: ['Ban Vật Tư','Ban Hộ Niệm'],
+    phoi_hop: { text: 'Ban Vật Tư đã lập thực đơn 12 món chay truyền thống. Ước tính phục vụ 400 phật tử. Đang chờ ý kiến Sư Phụ về danh sách món.', author: 'Ban Vật Tư', dateAm: '17/3/ÂL', time: '11:00' },
+    bts: { text: 'BTS đề nghị bổ sung thêm 2 món chay đặc trưng vùng miền để phong phú hơn. Đã gửi đề xuất lên Sư Phụ, đang chờ phản hồi.', author: 'BTS', dateAm: '17/3/ÂL', time: '11:30' },
+    sp: null, bld: null
+  },
+  {
+    id: 8, priority: 'overdue',
+    name: 'Nộp Báo Cáo Quý I Ban Hương Đăng',
+    detail: 'Tổng hợp hoạt động quý I/2026 của ban, số liệu vật tư đã sử dụng, kinh phí chi tiết và đề xuất kế hoạch quý II. Hạn nộp 30/4.',
+    timeAm: '30/3/ÂL – ĐÃ QUÁ HẠN', deadlineDaysLeft: -6, deadline: '2026-04-30',
+    banPhoiHop: ['Ban Tri Sự'],
+    phoi_hop: { text: 'Ban Tri Sự nhắc nhở đây là hạn chót nộp báo cáo của tất cả các ban. Ban Hương Đăng chưa nộp. Đề nghị nộp ngay trong ngày hôm nay.', author: 'Ban Tri Sự', dateAm: '13/3/ÂL', time: '09:00' },
+    bts: { text: 'BTS ghi nhận Ban Hương Đăng chưa nộp báo cáo Quý I. Yêu cầu giải trình lý do chậm trễ và nộp ngay trong ngày 06/05.', author: 'BTS', dateAm: '19/3/ÂL', time: '10:00' },
+    sp: null, bld: null
+  },
+  {
+    id: 9, priority: 'overdue',
+    name: 'Kiểm Kê Đèn Dầu & Nến Tồn Kho',
+    detail: 'Rà soát, kiểm kê toàn bộ đèn dầu, nến tồn kho tại kho vật tư. Lập biên bản báo cáo số lượng thực tế so với sổ sách.',
+    timeAm: '10/3/ÂL – ĐÃ QUÁ HẠN', deadlineDaysLeft: -12, deadline: '2026-04-24',
+    banPhoiHop: ['Ban Vật Tư'],
+    phoi_hop: { text: 'Ban Vật Tư đã nhắc nhở 2 lần. Ban Hương Đăng chưa tiến hành kiểm kê. Ảnh hưởng đến dự toán Phật Đản. Cần xử lý ngay.', author: 'Ban Vật Tư', dateAm: '15/3/ÂL', time: '08:00' },
+    bts: { text: 'BTS yêu cầu trưởng Ban Hương Đăng giải trình trong cuộc họp tuần tới. Việc này phải hoàn thành trước khi lập dự toán Phật Đản.', author: 'BTS', dateAm: '15/3/ÂL', time: '14:00' },
+    sp: null, bld: null
+  },
+  {
+    id: 10, priority: 'done',
+    name: 'Tổng Vệ Sinh Chánh Điện Trước Lễ',
+    detail: 'Tổng vệ sinh toàn bộ chánh điện, lau chùi bàn thờ, sắp xếp lại đồ thờ tự, thay hoa mới tại các bàn thờ phụ.',
+    timeAm: '15/3/ÂL – ĐÃ XONG', deadlineDaysLeft: -2, deadline: '2026-05-03',
+    banPhoiHop: ['Ban Hương Đăng'],
+    phoi_hop: { text: 'Đã hoàn thành vệ sinh toàn bộ chánh điện ngày 03/05. Tổng cộng 15 người tham gia, hoàn thành trước 10 giờ sáng. Ảnh chụp đã gửi qua Zalo nhóm ban.', author: 'Ban Hương Đăng', dateAm: '15/3/ÂL', time: '10:30' },
+    bts: { text: 'Đã kiểm tra và xác nhận chánh điện sạch sẽ, trang nghiêm. Ghi nhận sự nỗ lực của Ban Hương Đăng. Đạt yêu cầu.', author: 'BTS', dateAm: '15/3/ÂL', time: '11:00' },
+    sp: { text: 'Thầy đã kiểm tra chánh điện. Rất hài lòng. Tâm thành thì việc thành — tất cả đại chúng đã làm rất tốt. Cầu hồng ân Tam Bảo gia hộ cho tất cả.', author: 'Sư Phụ', dateAm: '15/3/ÂL', time: '16:00' },
     bld: null
+  },
+  {
+    id: 11, priority: 'done',
+    name: 'Đặt Hoa Tươi Định Kỳ Tháng 5',
+    detail: 'Liên hệ vựa hoa, đặt hoa tươi mỗi thứ Hai và thứ Sáu. Đảm bảo đủ hoa sen, hoa cúc, hoa huệ cho tất cả bàn thờ trong tháng 5.',
+    timeAm: '01/3/ÂL – ĐÃ XONG', deadlineDaysLeft: -5, deadline: '2026-04-30',
+    banPhoiHop: ['Ban Vật Tư'],
+    phoi_hop: { text: 'Đã ký hợp đồng với vựa hoa Thiện Mỹ. Lịch giao hàng: thứ Hai và thứ Sáu hàng tuần, giao lúc 6:00 sáng. Giá cố định cả tháng 5.', author: 'Ban Vật Tư', dateAm: '13/3/ÂL', time: '09:00' },
+    bts: { text: 'Đã duyệt hợp đồng. Chi phí nằm trong ngân sách tháng 5. Đề nghị Ban Hương Đăng kiểm tra chất lượng hoa mỗi lần nhận hàng.', author: 'BTS', dateAm: '13/3/ÂL', time: '09:30' },
+    sp: null, bld: null
   }
 ];
 
-// ── Render helpers ─────────────────────────────────────────────────────
-function getPriorityDotClass(task) {
-  if (task.priority === 'urgent') return 'urgent';
-  if (task.priority === 'important') return 'important';
-  if (task.priority === 'waiting') return 'waiting';
-  return 'normal';
+// ── Filters & pagination state ──────────────────────────────────
+const ITEMS_PER_PAGE = 5;
+let currentPage = 1;
+let activeStatus = '';
+let activeDateFilter = '';
+let activeBan = '';
+let activeDateFrom = null;
+let activeDateTo = null;
+
+// ── Dropdown logic ──────────────────────────────────────────────
+function toggleDD(id) {
+  const el = document.getElementById(id);
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.dropdown-wrap').forEach(d => d.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest('.dropdown-wrap')) {
+    document.querySelectorAll('.dropdown-wrap').forEach(d => d.classList.remove('open'));
+  }
+});
+
+function markSelected(menuId, clickedItem) {
+  document.querySelectorAll(`#${menuId} .dd-item`).forEach(i => i.classList.remove('selected'));
+  clickedItem.classList.add('selected');
 }
 
-function renderPhoiHopCell(op) {
+function setStatus(val, el) {
+  activeStatus = val;
+  markSelected('ddStatus', el);
+  const labels = {
+    '': 'Trạng thái', 'urgent': '🔴 Khẩn Cấp', 'important': '🟠 Quan Trọng',
+    'waiting': '🟡 Đang Chờ Ý Kiến', 'overdue': '🔻 Quá Hạn', 'done': '✅ Hoàn Thành'
+  };
+  document.getElementById('ddStatusLabel').textContent = labels[val] || 'Trạng thái';
+  const btn = document.querySelector('#ddStatus .dropdown-btn');
+  btn.classList.toggle('has-value', val !== '');
+  document.getElementById('ddStatus').classList.remove('open');
+  currentPage = 1; renderAll();
+}
+
+function setDateFilter(val, el) {
+  activeDateFilter = val; activeDateFrom = null; activeDateTo = null;
+  markSelected('ddDate', el);
+  const labels = {
+    '': '📅 Sắp xếp theo ngày', 'yesterday': '📅 Hôm qua',
+    'today': '📅 Hôm nay', 'tomorrow': '📅 Ngày mai', 'week': '📅 1 tuần tới'
+  };
+  document.getElementById('ddDateLabel').textContent = labels[val] || '📅 Ngày tùy chọn';
+  const btn = document.querySelector('#ddDate .dropdown-btn');
+  btn.classList.toggle('has-value', val !== '');
+  if (val !== 'custom') document.getElementById('ddDate').classList.remove('open');
+  currentPage = 1; renderAll();
+}
+
+function applyDateRange() {
+  const f = document.getElementById('dateFrom').value;
+  const t = document.getElementById('dateTo').value;
+  if (!f && !t) return;
+  activeDateFilter = 'custom';
+  activeDateFrom = f || null; activeDateTo = t || null;
+  document.getElementById('ddDateLabel').textContent = `📅 ${f||'…'} → ${t||'…'}`;
+  const btn = document.querySelector('#ddDate .dropdown-btn');
+  btn.classList.add('has-value');
+  document.getElementById('ddDate').classList.remove('open');
+  currentPage = 1; renderAll();
+}
+
+function setBan(val, el) {
+  activeBan = val;
+  markSelected('ddBan', el);
+  document.getElementById('ddBanLabel').textContent = val ? `🤝 ${val}` : '🤝 Ban phối hợp';
+  const btn = document.querySelector('#ddBan .dropdown-btn');
+  btn.classList.toggle('has-value', val !== '');
+  document.getElementById('ddBan').classList.remove('open');
+  currentPage = 1; renderAll();
+}
+
+// ── Filter logic ────────────────────────────────────────────────
+function getToday() { const d = new Date(); d.setHours(0,0,0,0); return d; }
+
+function matchesDateFilter(task) {
+  if (!activeDateFilter) return true;
+  const dl = task.deadline ? new Date(task.deadline) : null;
+  if (!dl) return true;
+  const today = getToday();
+  if (activeDateFilter === 'yesterday') {
+    const y = new Date(today); y.setDate(y.getDate()-1);
+    return dl.toDateString() === y.toDateString();
+  }
+  if (activeDateFilter === 'today') return dl.toDateString() === today.toDateString();
+  if (activeDateFilter === 'tomorrow') {
+    const tm = new Date(today); tm.setDate(tm.getDate()+1);
+    return dl.toDateString() === tm.toDateString();
+  }
+  if (activeDateFilter === 'week') {
+    const end = new Date(today); end.setDate(end.getDate()+7);
+    return dl >= today && dl <= end;
+  }
+  if (activeDateFilter === 'custom') {
+    if (activeDateFrom && dl < new Date(activeDateFrom)) return false;
+    if (activeDateTo && dl > new Date(activeDateTo)) return false;
+    return true;
+  }
+  return true;
+}
+
+function getFiltered() {
+  return tasks.filter(t => {
+    if (activeStatus && t.priority !== activeStatus) return false;
+    if (activeBan && !t.banPhoiHop.includes(activeBan)) return false;
+    if (!matchesDateFilter(t)) return false;
+    return true;
+  });
+}
+
+// ── Render ──────────────────────────────────────────────────────
+const STATUS_LABEL = { urgent:'Khẩn Cấp', important:'Quan Trọng', waiting:'Đang Chờ Ý Kiến', overdue:'Quá Hạn', done:'Hoàn Thành' };
+
+function renderOpinion(op, type) {
   if (!op) return `<span class="empty-cell">Chưa có ý kiến...</span>`;
-  return `
-    <div class="opinion-cell">${op.text}</div>
-    <div class="opinion-author">
+  return `<div class="opinion-cell">${truncate100(op.text)}</div>
+    <div class="opinion-author${type==='sp'?' sp':type==='bld'?' bld':''}">
       <span class="ban-tag">${op.author}</span>
       <span>${op.time} · ${op.dateAm}</span>
-    </div>`;
-}
-
-function renderBTSCell(op) {
-  if (!op) return `<span class="empty-cell">Chưa có ý kiến...</span>`;
-  return `
-    <div class="opinion-cell">${op.text}</div>
-    <div class="opinion-author">
-      <span class="ban-tag">${op.author}</span>
-      <span>${op.time} · ${op.dateAm}</span>
-    </div>`;
-}
-
-function renderSPBlock(op, type) {
-  // type: 'sp' or 'bld'
-  if (!op) return '';
-  const authorClass = type === 'bld' ? 'opinion-author bld' : 'opinion-author sp';
-  return `
-    <div class="sp-block">
-      <div class="opinion-cell">${op.text}</div>
-      <div class="${authorClass}">
-        <span class="ban-tag">${op.author}</span>
-        <span>${op.time} · ${op.dateAm}</span>
-      </div>
     </div>`;
 }
 
 function renderSPCell(task) {
-  const spBlock = renderSPBlock(task.sp, 'sp');
-  const bldBlock = renderSPBlock(task.bld, 'bld');
-  if (!spBlock && !bldBlock) return `<span class="empty-cell">Chưa có chỉ dạy...</span>`;
-  if (spBlock && bldBlock) {
-    return spBlock + `<div class="sp-block-sep"></div>` + bldBlock;
-  }
-  return spBlock || bldBlock;
+  const sp = task.sp ? `<div class="sp-block">${renderOpinion(task.sp,'sp')}</div>` : '';
+  const bld = task.bld ? `<div class="sp-block">${renderOpinion(task.bld,'bld')}</div>` : '';
+  if (!sp && !bld) return `<span class="empty-cell">Chưa có chỉ dạy...</span>`;
+  return sp && bld ? sp + `<div class="sp-block-sep"></div>` + bld : sp + bld;
 }
 
-function renderTasks(list) {
+function renderAll() {
+  const filtered = getFiltered();
+  const total = filtered.length;
+  const totalPages = Math.max(1, Math.ceil(total / ITEMS_PER_PAGE));
+  if (currentPage > totalPages) currentPage = totalPages;
+
+  const start = (currentPage-1)*ITEMS_PER_PAGE;
+  const pageItems = filtered.slice(start, start+ITEMS_PER_PAGE);
+
+  const end = Math.min(start + ITEMS_PER_PAGE, total);
+  const countEl = document.getElementById('resultCount');
+  if (total === 0) {
+    countEl.innerHTML = 'Không có kết quả';
+  } else {
+    countEl.innerHTML = `Hiển thị <span>${start+1}–${end}</span> trên tổng <span>${total}</span> công việc`;
+  }
+
   const tbody = document.getElementById('taskBody');
-  if (!list.length) {
+  if (!pageItems.length) {
     tbody.innerHTML = `<tr class="empty-row"><td colspan="4">Không có công việc nào phù hợp bộ lọc.</td></tr>`;
-    renderPagination(0);
-    return;
+  } else {
+    tbody.innerHTML = pageItems.map(t => {
+      const rowClass = t.priority === 'done' ? 'row-done' : t.priority === 'overdue' ? 'row-overdue' : '';
+      return `<tr class="${rowClass}">
+        <td>
+          <div class="task-name-row">
+            <span class="priority-dot ${t.priority}"></span>
+            <span class="task-name">${t.name}</span>
+          </div>
+          <div class="task-detail">${truncate100(t.detail)}</div>
+          <div class="task-meta">
+            ${t.timeAm ? `<span class="task-time">📅 ${t.timeAm}</span>` : ''}
+            <span class="status-badge ${t.priority}">${STATUS_LABEL[t.priority]||''}</span>
+            <span class="task-detail-link" onclick="alert('Chi tiết: ${t.name}')">Chi tiết công việc →</span>
+          </div>
+        </td>
+        <td>${renderOpinion(t.phoi_hop,'')}</td>
+        <td>${renderOpinion(t.bts,'')}</td>
+        <td class="sp-cell">${renderSPCell(t)}</td>
+      </tr>`;
+    }).join('');
   }
-  tbody.innerHTML = list.map(t => {
-    const dotClass = getPriorityDotClass(t);
-    const rowClass = t.priority === 'urgent' ? 'row-urgent' : '';
-    return `
-    <tr class="${rowClass}">
-      <td>
-        <div class="task-name-row">
-          <span class="priority-dot ${dotClass}"></span>
-          <span class="task-name">${t.name}</span>
-        </div>
-        ${t.detail ? `<div class="task-detail">${t.detail}</div>` : ''}
-        <div class="task-meta">
-          ${t.timeAm ? `<span class="task-time">📅 ${t.timeAm}</span>` : ''}
-          <span class="task-detail-link" onclick="alert('Chi tiết: ${t.name}')">Chi tiết công việc →</span>
-        </div>
-      </td>
-      <td>${renderPhoiHopCell(t.phoi_hop)}</td>
-      <td>${renderBTSCell(t.bts)}</td>
-      <td class="sp-cell">${renderSPCell(t)}</td>
-    </tr>`;
-  }).join('');
-  renderPagination(list.length);
+
+  renderPagination(totalPages);
 }
 
-// ── Pagination ─────────────────────────────────────────────────────────
-function renderPagination(count) {
+function renderPagination(totalPages) {
   const el = document.getElementById('pagination');
-  const pages = Math.max(1, Math.ceil(count / 10));
-  if (pages <= 1) { el.innerHTML = ''; return; }
-  let html = `<button class="pg-btn pg-nav">‹</button>`;
-  for (let i = 1; i <= pages; i++) {
-    html += `<button class="pg-btn${i === 1 ? ' active' : ''}">${i}</button>`;
-  }
-  html += `<button class="pg-btn pg-nav">›</button>`;
+  if (totalPages <= 1) { el.innerHTML = ''; return; }
+
+  let html = `<button class="pg-btn pg-nav" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹</button>`;
+
+  const pages = [];
+  for (let i = 1; i <= totalPages; i++) pages.push(i);
+
+  let prev = 0;
+  pages.forEach(p => {
+    if (p === 1 || p === totalPages || (p >= currentPage-2 && p <= currentPage+2)) {
+      if (prev && p - prev > 1) html += `<span class="pg-ellipsis">…</span>`;
+      html += `<button class="pg-btn${p===currentPage?' active':''}" onclick="goPage(${p})">${p}</button>`;
+      prev = p;
+    }
+  });
+
+  html += `<button class="pg-btn pg-nav" onclick="goPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>›</button>`;
   el.innerHTML = html;
 }
 
-// ── Filter & sort ──────────────────────────────────────────────────────
-let activeFilter = 'urgent';
-
-function setFilter(key, btn) {
-  activeFilter = key;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  applyFilters();
+function goPage(p) {
+  const filtered = getFiltered();
+  const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
+  if (p < 1 || p > totalPages) return;
+  currentPage = p;
+  renderAll();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function getFilteredList() {
-  if (activeFilter === 'all') return [...tasks];
-  if (activeFilter === 'urgent') return tasks.filter(t => t.priority === 'urgent');
-  if (activeFilter === 'important') return tasks.filter(t => t.priority === 'important');
-  if (activeFilter === 'waiting') return tasks.filter(t => t.priority === 'waiting');
-  return [...tasks];
-}
-
-function applyFilters() {
-  let list = getFilteredList();
-  // Sort by deadlineDaysLeft ascending (least time first)
-  list.sort((a, b) => a.deadlineDaysLeft - b.deadlineDaysLeft);
-  renderTasks(list);
-}
-
-function sortTasks(val) {
-  let list = getFilteredList();
-  if (val === 'deadline') {
-    list.sort((a, b) => a.deadlineDaysLeft - b.deadlineDaysLeft);
-  } else if (val === 'name') {
-    list.sort((a, b) => a.name.localeCompare(b.name, 'vi'));
-  } else {
-    list.sort((a, b) => a.deadlineDaysLeft - b.deadlineDaysLeft);
-  }
-  renderTasks(list);
-}
-
-// ── Init ───────────────────────────────────────────────────────────────
-renderTopbarDateTabs();
-applyFilters();
+// ── Init ────────────────────────────────────────────────────────
+initTopbarDatetime();
+renderAll();
 </script>
 </body>
 </html>
